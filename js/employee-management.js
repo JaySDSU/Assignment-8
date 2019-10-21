@@ -28,21 +28,25 @@ function del(n) {
 }
 
 var submit = $('add').addEventListener("click", function() {
-    var name = $('name').value;
-    var title = $('title').value;
-    var extension = $('extension').value;
+    var name = $('name');
+    var title = $('title');
+    var extension = $('extension');
 
-    if (!name) $("name").nextElementSibling.style.display = "inline-block";
+    if (!name.value) $("name").nextElementSibling.style.display = "inline-block";
     else $("name").nextElementSibling.style.display = "none";
 
-    if (!title) $('title').nextElementSibling.style.display = "inline-block";
+    if (!title.value) $('title').nextElementSibling.style.display = "inline-block";
     else $('title').nextElementSibling.style.display = "none";
 
-    if (!extension) $('extension').nextElementSibling.style.display = "inline-block";
+    if (!extension.value) $('extension').nextElementSibling.style.display = "inline-block";
     else $('extension').nextElementSibling.style.display = "none";
 
-    if (!name || !title || !extension) return;
-    else persons.push([name, title, extension]);
+    if (name.value && title.value && extension.value) {
+        persons.push([name.value, title.value, extension.value]);
+        name.value = "";
+        title.value = "";
+        extension.value = "";
+    }
 
     display();
 })
